@@ -3,14 +3,12 @@ package com.supermarket.pages;
 import java.io.FileInputStream;
 import java.util.Properties;
 
-import org.apache.commons.math3.analysis.solvers.AllowedSolution;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.google.errorprone.annotations.FormatMethod;
 import com.supermarket.constants.Constants;
 import com.supermarket.utilities.GeneralUtilities;
 
@@ -21,7 +19,7 @@ public class LoginPage {
 	FileInputStream ip;
 	GeneralUtilities generalutilities;
 
-	@CacheLookup
+	//@CacheLookup
 	@FindBy(xpath = "//input[@name='username']")
 	private WebElement usernameElement;
 	@FindBy(xpath = "//input[@name='password']")

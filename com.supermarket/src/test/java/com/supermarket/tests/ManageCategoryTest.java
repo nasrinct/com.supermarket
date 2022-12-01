@@ -18,26 +18,29 @@ public class ManageCategoryTest extends Base {
 	Excel excel = new Excel();
 	GeneralUtilities generalutilities = new GeneralUtilities();
 
-	@Test
+	@Test(priority = 1)
 	public void verifyManageCategoryAddCategoryFunctionality() {
 		loginPage = new LoginPage(driver);
 		managecategorypage = new ManageCategoryPage(driver);
 		loginPage.login();
 		managecategorypage.clickOnCategory();
-		managecategorypage.addNewCategory("chocolate" + generalutilities.get_TimeStamp(),
+		excel.setExcelFile("ManageCategory", "categories");
+		String category = excel.getCellData(0, 0);
+		managecategorypage.addNewCategory(category + generalutilities.get_TimeStamp(),
 				Constants.CATEGORY_IMAGE_PATH_CHOCOLATE);
 		Assert.assertTrue(managecategorypage.isSuccessAlertDisplayed(Constants.CATEGORY_ADDED_SUCCESS),
 				"Category Created Successfully");
 
 	}
 
-	@Test
+	@Test(dependsOnMethods = "verifyManageCategoryAddCategoryFunctionality")
 	public void verirfyDuplicationIsNotPossibleInManageCategoryList() {
 		loginPage = new LoginPage(driver);
 		managecategorypage = new ManageCategoryPage(driver);
 		loginPage.login();
 		managecategorypage.clickOnCategory();
-		String category = "chocolate" + generalutilities.get_RandomNumber();
+		excel.setExcelFile("ManageCategory", "categories");
+		String category = excel.getCellData(0, 0) + generalutilities.get_RandomNumber();
 		managecategorypage.addNewCategory(category, Constants.CATEGORY_IMAGE_PATH_CHOCOLATE);
 		managecategorypage.refresh();
 		managecategorypage.clickOnCategory();
@@ -47,14 +50,15 @@ public class ManageCategoryTest extends Base {
 
 	}
 
-	@Test
+	@Test(priority = 2)
 	public void verifyManageCategoryEditButtonFunctionality() {
 		loginPage = new LoginPage(driver);
 		managecategorypage = new ManageCategoryPage(driver);
 		SoftAssert softassert = new SoftAssert();
 		loginPage.login();
 		managecategorypage.clickOnCategory();
-		String category = "icecream" + generalutilities.get_RandomNumber();
+		excel.setExcelFile("ManageCategory", "categories");
+		String category = excel.getCellData(1, 0) + generalutilities.get_RandomNumber();
 		managecategorypage.addNewCategory(category, Constants.CATEGORY_IMAGE_PATH_ICECREAM);
 		softassert.assertTrue(managecategorypage.isSuccessAlertDisplayed(Constants.CATEGORY_ADDED_SUCCESS),
 				"Category Created Successfully");
@@ -65,7 +69,38 @@ public class ManageCategoryTest extends Base {
 		softassert.assertAll();
 
 	}
-	
-	
+
+	@Test
+	public void verifyManageCategoryDeleteFunctionality() {
+		loginPage = new LoginPage(driver);
+		managecategorypage = new ManageCategoryPage(driver);
+		SoftAssert softassert = new SoftAssert();
+		loginPage.login();
+		managecategorypage.clickOnCategory();
+		excel.setExcelFile("ManageCategory", "categories");
+		String category = excel.getCellData(1, 0) + generalutilities.get_RandomNumber();
+		managecategorypage.addNewCategory(category, Constants.CATEGORY_IMAGE_PATH_ICECREAM);
+		softassert.assertTrue(managecategorypage.isSuccessAlertDisplayed(Constants.CATEGORY_ADDED_SUCCESS),
+				"Category Created Successfully");
+		managecategorypage.clickOnCategory();
+		managecategorypage.deleteCategory(category);
+		softassert.assertTrue(managecategorypage.isSuccessAlertDisplayed(Constants.CATEGORY_DELETE_SUCCESS));
+		softassert.assertAll();
+
+	}
+
+	@Test
+	public void verifySubCategoryNewButtonFunctionality() {
+		loginPage = new LoginPage(driver);
+		managecategorypage = new ManageCategoryPage(driver);
+		loginPage.login();
+		managecategorypage.clickOnSubCategory();
+		excel.setExcelFile("ManageCategory", "subcategories");
+		String category = excel.getCellData(1, 0);
+		String subcategory = excel.getCellData(1, 1) + generalutilities.get_RandomNumber();
+		managecategorypage.addnewSubcategory(category, subcategory);
+		Assert.assertTrue(managecategorypage.isSuccessAlertDisplayed(Constants.SUBCATEGORY_ADDED_SUCCESS));
+
+	}
 
 }

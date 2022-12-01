@@ -7,7 +7,6 @@ import org.testng.asserts.SoftAssert;
 import com.supermarket.base.Base;
 import com.supermarket.constants.Constants;
 import com.supermarket.pages.AdminUsersPage;
-import com.supermarket.pages.HomePage;
 import com.supermarket.pages.LoginPage;
 import com.supermarket.utilities.Excel;
 import com.supermarket.utilities.GeneralUtilities;
@@ -18,14 +17,15 @@ public class AdminUsersTest extends Base {
 	AdminUsersPage adminuserpage;
 	Excel excel = new Excel();
 	GeneralUtilities generalutilities = new GeneralUtilities();
-
+	
 	@Test(description = "Create user")
 	public void verifyAdminUserCreateNewUserFunctionality() {
+		
 		loginPage = new LoginPage(driver);
 		adminuserpage = new AdminUsersPage(driver);
 		loginPage.login();
 		adminuserpage.clickOnAdminUsers();
-		excel.setExcelFile("CreateUser", "newUserDetails");
+		excel.setExcelFile("LoginData", "createUser");
 		String username = excel.getCellData(3, 0) + generalutilities.get_TimeStamp();
 		String expectedUser = username;
 		String password = excel.getCellData(3, 1);
