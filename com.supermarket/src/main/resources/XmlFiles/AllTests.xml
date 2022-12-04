@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Full Test" thread-count="4" parallel="classes">
+	<listeners>
+		<listener class-name="com.supermarket.listeners.ExtentReporter"></listener>
+	</listeners>
+	<test name="Smoke">
+		<classes>
+			<class name="com.supermarket.tests.AdminUsersTest"></class>
+			<class name="com.supermarket.tests.LoginTest"></class>
+			<class name="com.supermarket.tests.HomeTest"></class>
+			<class name="com.supermarket.tests.ManageCategoryTest"></class>
+			<class name="com.supermarket.tests.ManageDeliveryBoyTest"></class>
+			<class name="com.supermarket.tests.ManageLocationTest"></class>
+			<class name="com.supermarket.tests.ManageOrderTest"></class>
+			<class name="com.supermarket.tests.PushNotificationsTest"></class>
+		</classes>
+	</test>
+</suite>

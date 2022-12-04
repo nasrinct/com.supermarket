@@ -25,5 +25,16 @@ public class ManageDeliveryBoyTest extends Base {
 		Assert.assertTrue(managedeliveryboypage.isSuccessAlertDisplayed(Constants.DELIVERYBOY_ADDED_SUCCESS));
 
 	}
+	
+	@Test
+	public void verifyDeleteDeliveryBoyFunction() {
+		loginpage = new LoginPage(driver);
+		managedeliveryboypage = new ManageDeliveryBoyPage(driver);
+		loginpage.login();
+		managedeliveryboypage.clickOnManageDeliveryBoy();
+		managedeliveryboypage.deleteFirstDeliveryBoyOnList();
+		Assert.assertTrue(managedeliveryboypage.isSuccessAlertDisplayed(Constants.DELIVERYBOY_DELETED_SUCCESS));
+		
+	}
 
 }

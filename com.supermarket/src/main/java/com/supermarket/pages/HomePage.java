@@ -16,10 +16,19 @@ public class HomePage {
 	private WebElement box1;
 	@FindBy(xpath = "//div[@class='inner']//p[text()='Admin Users']")
 	private WebElement box2;
+	@FindBy(xpath = "//a[text()='Home']")
+	private WebElement home;
+	@FindBy(xpath = "//p[text()='Dashboard']")
+	private WebElement dashboard;
 
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+	}
+
+	public void clickOnDashboard() {
+		dashboard.click();
+
 	}
 
 	public int get_noOfBoxes() {
@@ -37,4 +46,15 @@ public class HomePage {
 		return generalutilities.get_CssValue(box2, "color");
 	}
 
+	public String getLinkofHome() {
+		GeneralUtilities generalutilities = new GeneralUtilities(driver);
+		return generalutilities.get_AttributeVaue(home, "href");
+
+	}
+
+	public String get_CurrentUrl() {
+		GeneralUtilities generalutilities = new GeneralUtilities(driver);
+		return generalutilities.get_CurrentUrl();
+
+	}
 }

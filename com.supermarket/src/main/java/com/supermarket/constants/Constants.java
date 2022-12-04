@@ -34,5 +34,20 @@ public class Constants {
 	public static final String CATEGORY_ADDED_SUCCESS = "Category Created Successfully";
 	public static final String CATEGORY_ALREADY_EXIST = "Category already exists.";
 	public static final String CATEGORY_UPDATE_SUCCESS = "Category Updated Successfully";
+	public static final String CATEGORY_DELETE_SUCCESS = "Category Deleted Successfully";
+	public static final String SUBCATEGORY_ADDED_SUCCESS = "Sub Category Created Successfully";
+
+	// ** ManageDeliverBoyPage ** //
+	public static final String DELIVERYBOY_ADDED_SUCCESS = "Delivery Boy Details Created Successfully";
+	public static final String DELIVERYBOY_DELETED_SUCCESS = "Delivery Boy Informations Deleted Successfully";
+
+	// ** ManageOrderPage ** //
+	public static final String DELIVERY_DATE_CHANGED_SUCCESS = "Delivery Date Updated Successfully";
+	public static final String DELIVERY_BOY_ASSIGNED_SUCCESS = "Delivery Boy Assigned Successfully";
+	public static final String ORDER_DELETED_SUCCESS = "Order Deleted Successfully";
+
+	// ** ManageLocationPage ** //
+	public static final String LOCATION_ADDED_SUCCESS = "Location Created Successfully";
+	public static final String LOCATION_DELETED_SUCCESS="Location Deleted Successfully";
 
 }

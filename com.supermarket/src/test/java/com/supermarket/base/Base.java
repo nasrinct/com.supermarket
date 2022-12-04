@@ -78,9 +78,9 @@ public class Base {
 	@AfterMethod
 	public void tearDown(ITestResult itestresult) {
 		if(itestresult.getStatus()==ITestResult.FAILURE) {
-			//screenshot.takeScreenshot(driver, itestresult.getName());
+			screenshot.takeScreenshot(driver, itestresult.getName());
 		}
-		//driver.close();
+		driver.close();
 	}
 
 }

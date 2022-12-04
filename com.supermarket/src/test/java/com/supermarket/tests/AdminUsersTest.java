@@ -17,10 +17,10 @@ public class AdminUsersTest extends Base {
 	AdminUsersPage adminuserpage;
 	Excel excel = new Excel();
 	GeneralUtilities generalutilities = new GeneralUtilities();
-	
+
 	@Test(description = "Create user")
 	public void verifyAdminUserCreateNewUserFunctionality() {
-		
+
 		loginPage = new LoginPage(driver);
 		adminuserpage = new AdminUsersPage(driver);
 		loginPage.login();
@@ -45,9 +45,14 @@ public class AdminUsersTest extends Base {
 	public void verifyAdminUserDeactivation() {
 		loginPage = new LoginPage(driver);
 		adminuserpage = new AdminUsersPage(driver);
-		String username = "jeff0";
 		loginPage.login();
 		adminuserpage.clickOnAdminUsers();
+		excel.setExcelFile("LoginData", "createUser");
+		String username = excel.getCellData(1, 0) + generalutilities.get_TimeStamp();
+		String password = excel.getCellData(1, 1);
+		String type = excel.getCellData(1, 2);
+		adminuserpage.createNewUser(username, password, type);
+		adminuserpage.refresh_Page();
 		adminuserpage.deactivateUser(username);
 		Assert.assertEquals(adminuserpage.get_UserStatus(username), Constants.EXPECTEDSTATUS);
 
@@ -59,7 +64,7 @@ public class AdminUsersTest extends Base {
 		adminuserpage = new AdminUsersPage(driver);
 		loginPage.login();
 		adminuserpage.clickOnAdminUsers();
-		excel.setExcelFile("CreateUser", "newUserDetails");
+		excel.setExcelFile("LoginData", "createUser");
 		String username = excel.getCellData(3, 0) + generalutilities.get_TimeStamp();
 		String password = excel.getCellData(3, 1);
 		String type = excel.getCellData(3, 2);
@@ -76,7 +81,7 @@ public class AdminUsersTest extends Base {
 		adminuserpage = new AdminUsersPage(driver);
 		loginPage.login();
 		adminuserpage.clickOnAdminUsers();
-		excel.setExcelFile("CreateUser", "newUserDetails");
+		excel.setExcelFile("LoginData", "createUser");
 		String username = excel.getCellData(3, 0) + generalutilities.get_TimeStamp();
 		String password = excel.getCellData(3, 1);
 		String type = excel.getCellData(3, 2);
@@ -98,12 +103,13 @@ public class AdminUsersTest extends Base {
 		adminuserpage = new AdminUsersPage(driver);
 		loginPage.login();
 		adminuserpage.clickOnAdminUsers();
-		excel.setExcelFile("CreateUser", "newUserDetails");
-		String username = excel.getCellData(3, 0) + generalutilities.get_TimeStamp();
-		String password = excel.getCellData(3, 1);
-		String type = excel.getCellData(3, 2);
-		adminuserpage.clickOnEdit("johny9");
-		adminuserpage.editUser(username, password, type);
+		excel.setExcelFile("LoginData", "createUser");
+		String username = excel.getCellData(2, 0) + generalutilities.get_TimeStamp();
+		String password = excel.getCellData(2, 1);
+		String type = excel.getCellData(2, 2);
+		adminuserpage.createNewUser(username, password, type);
+		adminuserpage.clickOnEdit(username);
+		adminuserpage.editUser("nasrin");
 		Assert.assertTrue(adminuserpage.isAlertDisplayed(Constants.USER_EDITED_ALERT));
 
 	}

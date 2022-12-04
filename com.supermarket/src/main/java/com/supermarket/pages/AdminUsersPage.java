@@ -178,11 +178,9 @@ public class AdminUsersPage {
 		
 	}
 	
-	public void editUser(String username,String password,String type) {
+	public void editUser(String username) {
+		usernameField.clear();
 		usernameField.sendKeys(username);
-		passwordField.sendKeys(password);
-		usertype.click();
-		selectType(type);
 		update.click();
 
 		

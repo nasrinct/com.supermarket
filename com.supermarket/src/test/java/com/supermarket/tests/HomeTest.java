@@ -19,7 +19,6 @@ public class HomeTest extends Base {
 		loginPage = new LoginPage(driver);
 		homepage = new HomePage(driver);
 		loginPage.login();
-
 		Assert.assertEquals(homepage.get_noOfBoxes(), Constants.EXPECTEDNO_OFBOXES);
 
 	}
@@ -29,7 +28,6 @@ public class HomeTest extends Base {
 		loginPage = new LoginPage(driver);
 		homepage = new HomePage(driver);
 		loginPage.login();
-
 		Assert.assertEquals(homepage.getTextOfFirstBox(), Constants.EXPECTEDtEXT_ONBOX1);
 
 	}
@@ -39,7 +37,16 @@ public class HomeTest extends Base {
 		loginPage = new LoginPage(driver);
 		homepage = new HomePage(driver);
 		loginPage.login();
-
 		Assert.assertEquals(homepage.get_ColorOfBox2(), Constants.EXPECTEDCOLOR_OFBOX2);
+	}
+
+	@Test
+	public void verifyTextHomeContainsHomePageLink() {
+		loginPage = new LoginPage(driver);
+		homepage = new HomePage(driver);
+		loginPage.login();
+		homepage.clickOnDashboard();
+		Assert.assertEquals(homepage.getLinkofHome(), homepage.get_CurrentUrl());
+
 	}
 }
