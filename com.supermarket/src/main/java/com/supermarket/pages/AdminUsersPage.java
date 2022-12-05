@@ -46,7 +46,8 @@ public class AdminUsersPage {
 	@FindBy(xpath = "//button[@name='Update']")
 	private WebElement update;
 
-	ScreenShot obj=new ScreenShot();
+	ScreenShot obj = new ScreenShot();
+
 	public AdminUsersPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -66,7 +67,7 @@ public class AdminUsersPage {
 		save.click();
 
 	}
-	
+
 	public void selectType(String type) {
 		PageUtility pageutility = new PageUtility(driver);
 		if (type.equalsIgnoreCase("Staff")) {
@@ -109,15 +110,15 @@ public class AdminUsersPage {
 
 			}
 		}
-		
+
 		if (get_UserStatus(userName).equals("Active")) {
 			driver.findElement(By.xpath("//tr[" + pos + "]//td[5]//a[1]")).click();
 
 		}
 	}
-	
+
 	public String get_UserStatus(String userName) {
-		GeneralUtilities generalutilities=new GeneralUtilities(driver);
+		GeneralUtilities generalutilities = new GeneralUtilities(driver);
 		List<String> usernames = new ArrayList<String>();
 		usernames = generalutilities.get_TextofElement("//tr//td[1]");
 		int pos = 0;
@@ -130,24 +131,24 @@ public class AdminUsersPage {
 		}
 		return generalutilities.get_TextofElement(driver.findElement(By.xpath("//tr[" + pos + "]//td[3]")));
 	}
-	
+
 	public void refresh_Page() {
-		GeneralUtilities generalutilities=new GeneralUtilities(driver);
+		GeneralUtilities generalutilities = new GeneralUtilities(driver);
 		generalutilities.refresh_Page();
-		
+
 	}
-	
+
 	public String searchUser(String username) {
-		GeneralUtilities generalutilities=new GeneralUtilities(driver);
+		GeneralUtilities generalutilities = new GeneralUtilities(driver);
 		search.click();
 		searchusername.sendKeys(username);
 		searchButton.click();
 		return generalutilities.get_TextofElement(searchResult);
-		
+
 	}
-	
+
 	public void deleteUser(String userName) {
-		GeneralUtilities generalutilities=new GeneralUtilities(driver);
+		GeneralUtilities generalutilities = new GeneralUtilities(driver);
 		List<String> usernames = new ArrayList<String>();
 		usernames = generalutilities.get_TextofElement("//tr//td[1]");
 		int pos = 0;
@@ -159,11 +160,12 @@ public class AdminUsersPage {
 			}
 		}
 		driver.findElement(By.xpath("//tr[" + pos + "]//td[5]//a[3]")).click();
-		driver.switchTo().alert().accept();
+		PageUtility pageutility=new PageUtility(driver);
+		pageutility.acceptAlert();
 	}
-	
+
 	public void clickOnEdit(String userName) {
-		GeneralUtilities generalutilities=new GeneralUtilities(driver);
+		GeneralUtilities generalutilities = new GeneralUtilities(driver);
 		List<String> usernames = new ArrayList<String>();
 		usernames = generalutilities.get_TextofElement("//tr//td[1]");
 		int pos = 0;
@@ -175,14 +177,13 @@ public class AdminUsersPage {
 			}
 		}
 		driver.findElement(By.xpath("//tr[" + pos + "]//td[5]//a[2]")).click();
-		
+
 	}
-	
+
 	public void editUser(String username) {
 		usernameField.clear();
 		usernameField.sendKeys(username);
 		update.click();
 
-		
 	}
 }

@@ -25,12 +25,6 @@ public class PageUtility {
 
 	}
 
-	// js index..scroll into view..click
-	// file upload 2..robot
-
-	// driver.switch to
-	// alerts
-
 	public void select_ByIndex(WebElement element, int index) {
 		Select select = new Select(element);
 		select.selectByIndex(index);
@@ -53,17 +47,17 @@ public class PageUtility {
 		actions = new Actions(driver);
 		actions.click().build().perform();
 	}
-	
+
 	public void mouse_ClickOnSpecificElement(WebElement element) {
-		actions=new Actions(driver);
+		actions = new Actions(driver);
 		actions.click(element).build().perform();
-		
+
 	}
-	
+
 	public void move_ToElementUsingActions(WebElement element) {
-		actions=new Actions(driver);
+		actions = new Actions(driver);
 		actions.moveToElement(element).build().perform();
-		
+
 	}
 
 	public void scrollDowntoIndexUsingjs(int x, int y) {
@@ -92,7 +86,7 @@ public class PageUtility {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void fileUploadUsingRobotClass(WebElement element, String path) throws AWTException {
@@ -138,10 +132,19 @@ public class PageUtility {
 		js = (JavascriptExecutor) driver;
 		while (is_Clicked(element)) {
 			js.executeScript("window.scrollBy(0," + x + ")");
-			x=x+20;
+			x = x + 20;
 
-			
 		}
+
+	}
+
+	public void acceptAlert() {
+		driver.switchTo().alert().accept();
+
+	}
+
+	public void switch_to_newWindow(String handle) {
+		driver.switchTo().window(handle);
 
 	}
 

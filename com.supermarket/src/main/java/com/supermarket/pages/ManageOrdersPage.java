@@ -124,7 +124,8 @@ public class ManageOrdersPage {
 
 	public void deleteFirstOrderinList() {
 		driver.findElement(By.xpath("//tr[1]//td[7]//a[2]")).click();
-		driver.switchTo().alert().accept();
+		pageutility=new PageUtility(driver);
+		pageutility.acceptAlert();
 
 	}
 }

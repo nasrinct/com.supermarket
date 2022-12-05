@@ -15,6 +15,7 @@ public class ScreenShot {
 	GeneralUtilities generalUtilities = new GeneralUtilities();
 
 	int c;
+
 	public void takeScreenshot(WebDriver driver, String imgName) {
 		try {
 			scrshot = (TakesScreenshot) driver;

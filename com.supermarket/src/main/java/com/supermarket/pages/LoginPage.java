@@ -19,7 +19,6 @@ public class LoginPage {
 	FileInputStream ip;
 	GeneralUtilities generalutilities;
 
-	//@CacheLookup
 	@FindBy(xpath = "//input[@name='username']")
 	private WebElement usernameElement;
 	@FindBy(xpath = "//input[@name='password']")

@@ -55,7 +55,7 @@ public class Excel {
 		Object data[][] = new Object[row][column];
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
-				data[i][j]=getCellData(i, j);
+				data[i][j] = getCellData(i, j);
 
 			}
 		}

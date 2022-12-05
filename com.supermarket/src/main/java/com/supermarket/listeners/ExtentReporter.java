@@ -20,13 +20,13 @@ import com.relevantcodes.extentreports.LogStatus;
 import com.supermarket.constants.Constants;
 import com.supermarket.utilities.GeneralUtilities;
 
-
 public class ExtentReporter implements IReporter {
 	private ExtentReports extent;
-	GeneralUtilities generalutilities=new GeneralUtilities();
+	GeneralUtilities generalutilities = new GeneralUtilities();
 
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
-		extent = new ExtentReports(Constants.EXTENTREPORT + File.separator + "Extent_"+generalutilities.get_TimeStamp()+".html", true);
+		extent = new ExtentReports(
+				Constants.EXTENTREPORT + File.separator + "Extent_" + generalutilities.get_TimeStamp() + ".html", true);
 
 		for (ISuite suite : suites) {
 			Map<String, ISuiteResult> result = suite.getResults();

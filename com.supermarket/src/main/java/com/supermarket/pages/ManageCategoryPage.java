@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.supermarket.utilities.GeneralUtilities;
 import com.supermarket.utilities.PageUtility;
+import com.supermarket.utilities.WaitUtility;
 
 public class ManageCategoryPage {
 
@@ -42,8 +43,6 @@ public class ManageCategoryPage {
 	private WebElement selectCategory;
 	@FindBy(css = "#subcategory")
 	WebElement enterSubcategory;
-	
-	//a[@class='btn btn-rounded btn-danger']
 
 	public ManageCategoryPage(WebDriver driver) {
 		this.driver = driver;
@@ -57,12 +56,12 @@ public class ManageCategoryPage {
 
 	}
 
-	public void addNewCategory(String category, String xpath) {
+	public void addNewCategory(String category, String path) {
 		generalutilities = new GeneralUtilities(driver);
 		newButton.click();
 		enterCategory.sendKeys(category);
 		discount.click();
-		generalutilities.file_UploadUsingSendKeys(choosefile, xpath);
+		generalutilities.file_UploadUsingSendKeys(choosefile, path);
 		pageutility = new PageUtility(driver);
 		pageutility.clickUsingjs(saveButton);
 
@@ -84,7 +83,7 @@ public class ManageCategoryPage {
 		return generalutilities.is_ExpectedTextPresent(failedAlert, expected);
 	}
 
-	public void clickOnCategoryActions(String name,String action) {
+	public void clickOnCategoryActions(String name, String action) {
 		GeneralUtilities generalutilities = new GeneralUtilities(driver);
 		List<String> categoryNames = new ArrayList<String>();
 		categoryNames = generalutilities.get_TextofElement("//tr//td[1]");
@@ -96,53 +95,57 @@ public class ManageCategoryPage {
 			}
 		}
 
-		if(action.equals("edit")) {
-			driver.findElement(By.xpath("//tr[" + pos + "]//td[4]//a[@class='btn btn-sm btn btn-primary btncss']")).click();
-		}else if(action.equals("delete")) {
-			driver.findElement(By.xpath("//tr[" + pos + "]//td[4]//a[@class='btn btn-sm btn btn-danger btncss']")).click();
+		if (action.equals("edit")) {
+			driver.findElement(By.xpath("//tr[" + pos + "]//td[4]//a[@class='btn btn-sm btn btn-primary btncss']"))
+					.click();
+		} else if (action.equals("delete")) {
+			driver.findElement(By.xpath("//tr[" + pos + "]//td[4]//a[@class='btn btn-sm btn btn-danger btncss']"))
+					.click();
 		}
 
 	}
 
 	public void editCategoryName(String name, String newcategoryName) {
-		pageutility=new PageUtility(driver);
-		clickOnCategoryActions(name,"edit");
+		pageutility = new PageUtility(driver);
+		clickOnCategoryActions(name, "edit");
 		enterCategory.clear();
 		enterCategory.sendKeys(newcategoryName);
 		pageutility.clickUsingjs(saveButton);
 
 	}
-	
+
 	public void deleteCategory(String name) {
 		clickOnCategoryActions(name, "delete");
-		driver.switchTo().alert().accept();
+		pageutility=new PageUtility(driver);
+		pageutility.acceptAlert();
 	}
-	
+
 	public void clickOnSubCategory() {
 		manageCategory.click();
 		subCategory.click();
 
 	}
-	
-	public void addnewSubcategory(String category,String subcategory) {
+
+	public void addnewSubcategory(String category, String subcategory, String path) {
+		generalutilities = new GeneralUtilities(driver);
 		newButton.click();
 		selectCategory(category);
 		enterSubcategory(subcategory);
+		generalutilities.file_UploadUsingRobotClass(choosefile, path);
+		WaitUtility waitutility=new WaitUtility(driver);
+		waitutility.fluentwait_ElementTobeVisible(20, 05 ,"//div[@id='imagePreview']");
 		saveButton.click();
-		
+
 	}
-	
+
 	public void selectCategory(String category) {
-		pageutility=new PageUtility(driver);
+		pageutility = new PageUtility(driver);
 		pageutility.select_ByVisibleText(selectCategory, category);
-		
+
 	}
-	
+
 	public void enterSubcategory(String subcategory) {
 		enterSubcategory.sendKeys(subcategory);
 	}
-	
-	
 
-		
 }

@@ -31,7 +31,7 @@ public class ManageOrderTest extends Base{
 		loginPage.login();
 		manageorderspage.clickOnManageOrder();
 		String newStatus="Delivered";
-		String actualStatus=manageorderspage.changeStausOfOrder("390",newStatus);
+		String actualStatus=manageorderspage.changeStausOfOrder("379",newStatus);
 		String expectedStatus=newStatus;
 		Assert.assertEquals(actualStatus, expectedStatus);
 		

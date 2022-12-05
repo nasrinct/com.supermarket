@@ -83,10 +83,11 @@ public class ManageDeliveryBoyPage {
 		return generalutilities.is_ExpectedTextPresent(successAlert, expected);
 
 	}
-	
+
 	public void deleteFirstDeliveryBoyOnList() {
 		driver.findElement(By.xpath("//tr[1]//td[8]//a[2]")).click();
-		driver.switchTo().alert().accept();
-		
+		pageutility=new PageUtility(driver);
+		pageutility.acceptAlert();
+
 	}
 }

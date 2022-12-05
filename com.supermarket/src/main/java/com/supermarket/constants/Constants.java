@@ -48,6 +48,6 @@ public class Constants {
 
 	// ** ManageLocationPage ** //
 	public static final String LOCATION_ADDED_SUCCESS = "Location Created Successfully";
-	public static final String LOCATION_DELETED_SUCCESS="Location Deleted Successfully";
+	public static final String LOCATION_DELETED_SUCCESS = "Location Deleted Successfully";
 
 }

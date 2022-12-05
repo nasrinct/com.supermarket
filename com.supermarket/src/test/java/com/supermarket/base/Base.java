@@ -26,7 +26,7 @@ public class Base {
 	public WebDriver driver;
 	Properties prop = new Properties();
 	FileInputStream ip;
-	ScreenShot screenshot=new ScreenShot();;
+	ScreenShot screenshot = new ScreenShot();;
 
 	public Base() {
 		try {
@@ -57,7 +57,7 @@ public class Base {
 
 	}
 
-	@BeforeMethod(enabled = true,alwaysRun = true)
+	@BeforeMethod(enabled = true, alwaysRun = true)
 	public void setUp() {
 		String browser = prop.getProperty("browser");
 		String url = prop.getProperty("url");
@@ -65,19 +65,18 @@ public class Base {
 		initialize(browser, url);
 
 	}
-	
+
 	@Parameters("browser")
 	@BeforeMethod(enabled = false)
 	public void set_up(String browser) {
 		String url = prop.getProperty("url");
 		initialize(browser, url);
-		
-		
+
 	}
-	
+
 	@AfterMethod
 	public void tearDown(ITestResult itestresult) {
-		if(itestresult.getStatus()==ITestResult.FAILURE) {
+		if (itestresult.getStatus() == ITestResult.FAILURE) {
 			screenshot.takeScreenshot(driver, itestresult.getName());
 		}
 		driver.close();

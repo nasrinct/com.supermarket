@@ -98,7 +98,7 @@ public class ManageCategoryTest extends Base {
 		excel.setExcelFile("ManageCategory", "subcategories");
 		String category = excel.getCellData(1, 0);
 		String subcategory = excel.getCellData(1, 1) + generalutilities.get_RandomNumber();
-		managecategorypage.addnewSubcategory(category, subcategory);
+		managecategorypage.addnewSubcategory(category, subcategory, Constants.CATEGORY_IMAGE_PATH_ICECREAM);
 		Assert.assertTrue(managecategorypage.isSuccessAlertDisplayed(Constants.SUBCATEGORY_ADDED_SUCCESS));
 
 	}
